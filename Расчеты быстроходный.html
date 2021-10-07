@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Генератор компонентов цилиндрического зубчатого зацепления</title>
+<meta charset="UTF-8">
+<style>
+body,p,table,th,td,h1,h2,h3,h4,h5{font-weight: normal; font-size: 10pt; font-family: Tahoma, Arial, Helvetica, sans-serif}
+body{color: #000000; background-color: #ffffff}
+h1{font-weight: bold; font-size: 145%; margin-bottom: 1em}
+h2{font-weight: bold; font-size: 130%; margin-bottom: 0.6em}
+h3{font-weight: bold; font-size: 120%; margin-bottom: 0.5em}
+h4{font-weight: bold; font-size: 110%; margin-bottom: 0.5em}
+h5{font-weight: bold; font-size: 100%; margin-bottom: 0.5em}
+p{margin: 0.5em 0em 0.3em 0em; line-height: 100%}
+blockquote{margin: 0em 0em 0em 1em; font-size: 100%; line-height: 100%; direction: ltr}
+.ta{border: dodgerblue 1px solid; border-collapse: collapse; background-color: #d9e6ff}
+.ta td,.ta th{border: dodgerblue 1px solid; padding: 2pt; valign: top}
+.ta0{border: 0px; margin-top: -4px; margin-bottom: -4px}
+.ta0 td{border: 0px; valign: top}
+.collapsed{background: url("data:image/gif;base64,R0lGODlhCQAJAIAAAAAAAP///yH5BAEAAAEALAAAAAAJAAkAAAIRhI+hG7bwoJINIktzjizeUwAAOw==") left center no-repeat; display: block; padding: 0 0 0 14px; cursor: pointer}
+.expanded{background: url("data:image/gif;base64,R0lGODlhCQAJAIAAAAAAAP///yH5BAEAAAEALAAAAAAJAAkAAAIQhI+hG8brXgPzTHllfKiDAgA7") left center no-repeat; display: block; padding: 0 0 0 14px; cursor: pointer}
+</style>
+<script type="text/javascript">
+var toggle = function(e) {
+	var elem = e.target;
+	var elemNext = elem.nextElementSibling;
+	if (elemNext){
+		var st = elemNext.style;
+		if (st)
+			if (st.display == "none"){
+				elem.className = "expanded";
+				st.removeProperty("display");
+			}else{
+				elem.className = "collapsed";
+				st.display = "none";
+			}
+	}
+}
+window.onload = function() {
+	var elems = document.getElementsByClassName("expanded");
+	for(var i = 0; i < elems.length; i++) {
+		var elem = elems[i]
+		elem.onclick = toggle;
+		var elemNext = elem.nextElementSibling;
+		if (elemNext){
+			var st = elemNext.style;
+			if (st)
+				st.removeProperty("display");
+		}
+	}
+	elems = document.getElementsByClassName("collapsed");
+	for(var i = 0; i < elems.length; i++) {
+		var elem = elems[i]
+		elem.onclick = toggle;
+		var elemNext = elem.nextElementSibling;
+		if (elemNext){
+			var st = elemNext.style;
+			if (st)
+				st.display = "none";
+		}
+	}
+}</script>
+</head>
+<body data-new-gr-c-s-check-loaded="8.886.0" data-gr-ext-installed="">
+<h1>Генератор компонентов цилиндрического зубчатого зацепления (Версия: 2022 (Build 260153000, 153))</h1>
+<p>07.10.2021</p>
+<hr>
+<h3 class="collapsed">Сведения о проекте (свойства iProperties)</h3>
+<blockquote style="display: none;">
+	<h5 class="collapsed">Краткие сведения</h5>
+	<blockquote style="display: none;">
+	<table class="ta">
+		<tbody><tr>
+		<td>Наименование</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Тема</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Разраб.</td>
+		<td>Алексанян Г.</td>
+		</tr>
+		<tr>
+		<td>Нач. отд.</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Организация</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Категория</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Ключевые слова</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Примечание</td>
+		<td></td>
+		</tr>
+	</tbody></table>
+	</blockquote>
+	<h5 class="collapsed">Проект</h5>
+	<blockquote style="display: none;">
+	<table class="ta">
+		<tbody><tr>
+		<td>Обозначение</td>
+		<td>МПСТ Редуктор</td>
+		</tr>
+		<tr>
+		<td>Инвентарный номер</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Описание</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Редакция</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Проект</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Разработал</td>
+		<td>Алексанян Г.</td>
+		</tr>
+		<tr>
+		<td>Т. контр.</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Нач. отдела</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Сметчик</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Стоимость</td>
+		<td>0,00 ₽</td>
+		</tr>
+		<tr>
+		<td>Дата создания</td>
+		<td>16.09.2021</td>
+		</tr>
+		<tr>
+		<td>Поставщик</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Web-сайт</td>
+		<td></td>
+		</tr>
+	</tbody></table>
+	</blockquote>
+	<h5 class="collapsed">Статус</h5>
+	<blockquote style="display: none;">
+	<table class="ta">
+		<tbody><tr>
+		<td>Статус</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Стадия проекта</td>
+		<td>1</td>
+		</tr>
+		<tr>
+		<td>Сохранил</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Проверил</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Нормоконтроль</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Дата нормоконтроля</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Название типа детали</td>
+		<td>Assembly</td>
+		</tr>
+		<tr>
+		<td>Утвердил</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Дата утверждения</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Стандарт</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Изготовитель</td>
+		<td></td>
+		</tr>
+		<tr>
+		<td>Организация по стандартизации</td>
+		<td></td>
+		</tr>
+	</tbody></table>
+	</blockquote>
+</blockquote>
+<h3 class="expanded">Направляющая</h3>
+<blockquote>
+ <p>Выбор модели - Общий коэффициент смещения</p>
+ <p>Выбор коэффициента смещения - Пользовательский</p>
+ <p>Тип расчета нагрузки - Расчет крутящего момента для указанной мощности и скорости</p>
+ <p>Тип расчета прочности - Проверочный расчет</p>
+ <p>Метод расчета прочности - ISO 6336:1996</p>
+</blockquote>
+<h3 class="expanded">Общие параметры</h3>
+<blockquote>
+<table class="ta">
+ <tbody><tr>
+  <td>Передаточное отношение</td>
+  <td>i</td>
+  <td align="center"><font color="black">3,8250 бр</font></td>
+ </tr>
+ <tr>
+  <td>Требуемое передаточное отношение</td>
+  <td>i<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">in</span></td>
+  <td align="center"><font color="magenta">3,8250 бр</font></td>
+ </tr>
+ <tr>
+  <td>Модуль</td>
+  <td>m</td>
+  <td align="center"><font color="magenta">2,000 мм</font></td>
+ </tr> 
+ <tr>
+  <td>Угол наклона зуба</td>
+  <td>β</td>
+  <td align="center"><font color="magenta">15,0000 град</font></td>
+ </tr>
+ <tr>
+  <td>Угол профиля</td>
+  <td>α</td>
+  <td align="center"><font color="magenta">20,0000 град</font></td>
+ </tr>
+ <tr>
+  <td>Межосевое расстояние</td>
+  <td>a<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">w</span></td>
+  <td align="center"><font color="magenta">200,000 мм</font></td>
+ </tr>
+ <tr>
+  <td>Делительное межосевое расстояние</td>
+  <td>a</td>
+  <td align="center"><font color="black">199,808 мм</font></td>
+ </tr>
+ <tr>
+  <td>Общий коэффициент смещения</td>
+  <td>Σx</td>
+  <td align="center"><font color="black">0,0962 бр</font></td>
+ </tr>
+ <tr>
+  <td>Окружной шаг</td>
+  <td>p</td>
+  <td align="center"><font color="black">6,283 мм</font></td>
+ </tr>
+ <tr>
+  <td>Основной окружной шаг</td>
+  <td>p<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">tb</span></td>
+  <td align="center"><font color="black">6,087 мм</font></td>
+ </tr>
+ <tr>
+  <td>Угол зацепления</td>
+  <td>α<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">w</span></td>
+  <td align="center"><font color="black">20,1556 град</font></td>
+ </tr>
+ <tr>
+  <td>Тангенциальный угол профиля</td>
+  <td>α<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">t</span></td>
+  <td align="center"><font color="black">20,6469 град</font></td>
+ </tr>
+ <tr>
+  <td>Тангенциальный угол зацепления</td>
+  <td>α<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">tw</span></td>
+  <td align="center"><font color="black">20,7922 град</font></td>
+ </tr>
+ <tr>
+  <td>Угол наклона зуба на основ.цилиндре</td>
+  <td>β<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">b</span></td>
+  <td align="center"><font color="black">14,0761 град</font></td>
+ </tr>
+ <tr>
+  <td>Тангенциальный модуль</td>
+  <td>m<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">t</span></td>
+  <td align="center"><font color="black">2,071 мм</font></td>
+ </tr> 
+ <tr>
+  <td>Тангенциальный окружной шаг</td>
+  <td>p<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">t</span></td>
+  <td align="center"><font color="black">6,505 мм</font></td>
+ </tr> 
+ <tr>
+  <td>Коэффициент перекрытия</td>
+  <td>ε</td>
+  <td align="center"><font color="black">4,9981 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент торцевого перекрытия</td>
+  <td>ε<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">α</span></td>
+  <td align="center"><font color="black">1,7027 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент перекрытия</td>
+  <td>ε<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">β</span></td>
+  <td align="center"><font color="black">3,2954 бр</font></td>
+ </tr> 
+ <tr>
+  <td>Предельное отклонение параллельности осей</td>
+  <td>f<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">x</span></td>
+  <td align="center"><font color="black">0,0170 мм</font></td>
+ </tr>
+ <tr>
+  <td>Предельное отклонение параллельности осей</td>
+  <td>f<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">y</span></td>
+  <td align="center"><font color="black">0,0085 мм</font></td>
+ </tr>
+</tbody></table>
+</blockquote>
+<h3 class="expanded">Зубчатые колеса</h3>
+<blockquote>
+<table class="ta">
+ <tbody><tr>
+  <td colspan="2"></td>
+  <td align="center">Зубчатое колесо 1</td>
+  <td align="center">Зубчатое колесо 2</td>
+ </tr>
+ <tr>
+  <td colspan="2">Тип модели</td>
+  <td align="center">Компонент</td>
+  <td align="center">Компонент</td>
+ </tr>
+ <tr>
+  <td>Количество зубьев</td>
+  <td>z</td>
+  <td align="center"><font color="magenta">40 бр</font></td>
+  <td align="center"><font color="black">153 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент смещения</td>
+  <td>x</td>
+  <td align="center"><font color="magenta">0,0000 бр</font></td>
+  <td align="center"><font color="black">0,0962 бр</font></td>
+ </tr>
+ <tr>
+  <td>Средний диаметр</td>
+  <td>d</td>
+  <td align="center"><font color="black">82,822 мм</font></td>
+  <td align="center"><font color="black">316,795 мм</font></td>
+ </tr>
+ <tr>
+  <td>Наружный диаметр</td>
+  <td>d<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">a</span></td>
+  <td align="center"><font color="black">86,821 мм</font></td>
+  <td align="center"><font color="black">321,178 мм</font></td>
+ </tr>
+ <tr>
+  <td>Диаметр впадин</td>
+  <td>d<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">f</span></td>
+  <td align="center"><font color="black">77,822 мм</font></td>
+  <td align="center"><font color="black">312,179 мм</font></td>
+ </tr>
+ <tr>
+  <td>Основной диаметр окружности</td>
+  <td>d<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">b</span></td>
+  <td align="center"><font color="black">77,503 мм</font></td>
+  <td align="center"><font color="black">296,447 мм</font></td>
+ </tr>
+ <tr>
+  <td>Начальный диаметр</td>
+  <td>d<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">w</span></td>
+  <td align="center"><font color="black">82,902 мм</font></td>
+  <td align="center"><font color="black">317,098 мм</font></td>
+ </tr>
+ <tr>
+  <td>Ширина грани</td>
+  <td>b</td>
+  <td align="center"><font color="magenta">90,000 мм</font></td>
+  <td align="center"><font color="magenta">80,000 мм</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент ширины зубчатого венца</td>
+  <td>b<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">r</span></td>
+  <td align="center"><font color="black">0,9659 бр</font></td>
+  <td align="center"><font color="black">0,2525 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент высоты головки зуба</td>
+  <td>a*</td>
+  <td align="center"><font color="magenta">1,0000 бр</font></td>
+  <td align="center"><font color="black">1,0000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Зазор</td>
+  <td>c*</td>
+  <td align="center"><font color="magenta">0,2500 бр</font></td>
+  <td align="center"><font color="black">0,2500 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент радиуса переходной кривой</td>
+  <td>r<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">f</span>*</td>
+  <td align="center"><font color="magenta">0,3500 бр</font></td>
+  <td align="center"><font color="black">0,3500 бр</font></td>
+ </tr>
+ <tr>
+  <td>Толщина зуба</td>
+  <td>s</td>
+  <td align="center"><font color="black">3,142 мм</font></td>
+  <td align="center"><font color="black">3,282 мм</font></td>
+ </tr>
+ <tr>
+  <td>Тангенциальная толщина зуба</td>
+  <td>s<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">t</span></td>
+  <td align="center"><font color="black">3,252 мм</font></td>
+  <td align="center"><font color="black">3,397 мм</font></td>
+ </tr>
+ <tr>
+  <td>Толщина хорды</td>
+  <td>t<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">c</span></td>
+  <td align="center"><font color="black">2,774 мм</font></td>
+  <td align="center"><font color="black">2,898 мм</font></td>
+ </tr>
+ <tr>
+  <td>Высота головки зуба по хорде</td>
+  <td>a<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">c</span></td>
+  <td align="center"><font color="black">1,495 мм</font></td>
+  <td align="center"><font color="black">1,664 мм</font></td>
+ </tr>
+ <tr>
+  <td>Размер хорды</td>
+  <td>Вт</td>
+  <td align="center"><font color="black">33,710 мм</font></td>
+  <td align="center"><font color="black">119,996 мм</font></td>
+ </tr>
+ <tr>
+  <td>Зубья с размером по хорде</td>
+  <td>z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">w</span></td>
+  <td align="center"><font color="black">6,000 бр</font></td>
+  <td align="center"><font color="black">20,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Размер между каркасами</td>
+  <td>M</td>
+  <td align="center"><font color="black">87,832 мм</font></td>
+  <td align="center"><font color="black">322,240 мм</font></td>
+ </tr>
+ <tr>
+  <td>Диаметр проволоки</td>
+  <td>d<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">M</span></td>
+  <td align="center"><font color="black">3,500 мм</font></td>
+  <td align="center"><font color="black">3,500 мм</font></td>
+ </tr>
+ <tr>
+  <td>Предельное отклонение направления зуба</td>
+  <td>F<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">β</span></td>
+  <td align="center"><font color="black">0,0170 мм</font></td>
+  <td align="center"><font color="black">0,0150 мм</font></td>
+ </tr>
+ <tr>
+  <td>Допуск на радиальное биение</td>
+  <td>F<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">r</span></td>
+  <td align="center"><font color="black">0,0210 мм</font></td>
+  <td align="center"><font color="black">0,0360 мм</font></td>
+ </tr>
+ <tr>
+  <td>Предельные отклонения осевого шага</td>
+  <td>f<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">pt</span></td>
+  <td align="center"><font color="black">0,0075 мм</font></td>
+  <td align="center"><font color="black">0,0095 мм</font></td>
+ </tr>
+ <tr>
+  <td>Пред.отклон. основного шага</td>
+  <td>f<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">pb</span></td>
+  <td align="center"><font color="black">0,0070 мм</font></td>
+  <td align="center"><font color="black">0,0090 мм</font></td>
+ </tr>
+ <tr>
+  <td>Виртуальное количество зубьев</td>
+  <td>z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">v</span></td>
+  <td align="center"><font color="black">44,015 бр</font></td>
+  <td align="center"><font color="black">168,356 бр</font></td>
+ </tr>
+ <tr>
+  <td>Эквивалентный делительный диаметр</td>
+  <td>d<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">n</span></td>
+  <td align="center"><font color="black">88,029 мм</font></td>
+  <td align="center"><font color="black">336,711 мм</font></td>
+ </tr>
+ <tr>
+  <td>Виртуальный наружный диаметр</td>
+  <td>d<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">an</span></td>
+  <td align="center"><font color="black">92,028 мм</font></td>
+  <td align="center"><font color="black">341,095 мм</font></td>
+ </tr>
+ <tr>
+  <td>Виртуальный основной диаметр окружности</td>
+  <td>d<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">bn</span></td>
+  <td align="center"><font color="black">82,720 мм</font></td>
+  <td align="center"><font color="black">316,405 мм</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент смещения без уклона</td>
+  <td>x<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">z</span></td>
+  <td align="center"> <font color="black">-0,2004 бр</font> </td>
+  <td align="center"> <font color="black">-3,7330 бр</font> </td>
+ </tr>
+ <tr>
+  <td>Коэффициент смещения без подрезания</td>
+  <td>x<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">p</span></td>
+  <td align="center"> <font color="black">-1,5547 бр</font> </td>
+  <td align="center"> <font color="black">-8,8272 бр</font> </td>
+ </tr>
+ <tr>
+  <td>Коэффициент смещения допустимого подрезания</td>
+  <td>x<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">d</span></td>
+  <td align="center"> <font color="black">-1,7246 бр</font> </td>
+  <td align="center"> <font color="black">-8,9972 бр</font> </td>
+ </tr>
+ <tr>
+  <td>Коэф.высот.модиф.зуба</td>
+  <td>k</td>
+  <td align="center"><font color="black">0,0003 бр</font></td>
+  <td align="center"><font color="black">0,0003 бр</font></td>
+ </tr>
+ <tr>
+  <td>Наружная толщина зуба</td>
+  <td>s<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">a</span></td>
+  <td align="center"><font color="black">0,7634 бр</font></td>
+  <td align="center"><font color="black">0,8144 бр</font></td>
+ </tr>
+ <tr>
+  <td>Угол профиля вершины зуба</td>
+  <td>α<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">a</span></td>
+  <td align="center"><font color="black">26,3095 град</font></td>
+  <td align="center"><font color="black">22,0483 град</font></td>
+ </tr>
+</tbody></table>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKIAAACABAMAAAB6uK8VAAAAElBMVEUAAAD//wAAAP8AAACgoKBgYGBmf5nPAAAAAXRSTlMAQObYZgAAAfFJREFUaN7tmlFqg0AQQGVLDjCt+z+dEzQ0Fwil/+n9L9NEUoSaeTHjhJrqwAqy6+M5g+sINmNDxy78R8Rimm6oukiiaXZltDTJMQdiOQ3IlZPH80V6kVgslP3uMr04MSXu7ch55OA8hmMlrsRk4uEacXONuHkw4tN7Vrz9EEXkS55l20oX++7466QOZ/rji7x2CwbE4QX9Sb080woRd6Ao1VNER1CUCorygUTn1isotujoVaeC4h6JXnUqKPp5BEWpoOgQRbagKBUUj0RxiL6iVF8RiKAon6AIRHgMq6voEOVUGVCELJ6fGblEJBQoAjGkSMRdSBEdA4r9TiETd4pWsneKPe0U/V0Hs9g6eRTeKUjxSBSHGFQEYkwRiEHFnjioNaEqKMIeDorVVQQi9xSgGOwpQDHYU4BivKcYzOf0FPvMncKdh/c19BSgCO9C6ilAEYjUU4DigJjfh5fjOByHhr8VynmBPhhRu8HBxLIS/4aoCyQWyyZqo0WzidrMn2iaXJmgI8V8iHYz0ZBo5hAhzMwlWjyyHYN5bAJ5nBArcTRRF0gslk3UZiXOszJzeQotuX80m0A0GxBtemQ73j2PKbESRy1eILFYNlGbhRKLplemRIgMzSbqjY5FJzmeAQp/zUz7g6ZYVqQ7Yh7jf/l8A6qjRSjRZuYCAAAAAElFTkSuQmCC"> &nbsp; &nbsp; <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGUAAAB2BAMAAAAjEEDJAAAAFVBMVEUAAAD//wAAAP+goKBgYGAAAACAgIC2ygV9AAAAAXRSTlMAQObYZgAAAtxJREFUWMPllU1u2zAQhQ3B6p6guVcJ9AAC2r0IM11TsLXvqvc/Qv0oMkN5zB8LDhKgA4SZhPPpzVBP0iET3SEfL2V0fu/Te9vHPD+R/noTDWgrdAcQfw9VRmud3lo9VBn9IF6vQ/Mg2ue5i/+Y6fTzzLBDR++ZR+9gOqKaexvYbPUAtuM5bWY0yqMOkm6DdpmHjjY6PEBlptO5eK0OzbNGdR6+QcnrmeEBM+xk6GQ/liETfgVmegmzbn0y0y8xNI8MM0shhBGjEK5ZZx7BAGxmeinAAFTNzAjmLBCukbn4aoNFNjK9R6RnRvUMMxqAwjMEdBlmFr4aDE67gYkywgAMDDm0wEgBJpx2fZ7Zy4CRYstoPRSY6B2kLjCYJcP41qJ3kDYy5J1b2sCgNfLOLVXpdznLSPLOLVXVc/sRZaSJg7kGRqbeaWRG8o5PVY35HmXArOmvOjOSd9a0qnMNMmBCqirvnV5Yc+cda1xZp5fiZFPv4C9VYVDtpVbwdBYVJj6jJ4sVIvTCyn8X4sNjMY2Nx+CqzDrHGWLhGMrM1SJQaK3xXSIKzNG+vctY/MT7e7tS5rttp0Mf2sHs+BW87bDJmBB9OK5ogVuGVBXOGgyOK86+KtYYTE3eWSerMLP4ae7eO9AtM+hr+96B1FuBOV5RF6ehVNksY6eL8NUMdHZ6yBwt5vElDHTY5XGc3m3NQZiHQ3YiW3PQrSWsL7I1Bx1VJSLEcBnPUGHEieEynqHaODwxVG0S0CU9RTlipGDe2TAEEDMy76xMPubk2mdKZZFJrm0oHUvMJbm2obTcW3JtQ2mJ6dN7YyitMeybBVCVGf7NEjmGW9RQWmYy3hGu1Br3TpXJeEeqQmvcO+U7tGCTeSesyuUQybxDR7dwYvGb3Du0Lm47/RKquXdovevvG1Vz79D6Z8NQNfNOXBnDZYRhMoxhbynDZBjD3mlmK8OZvzx+83+BKcZU2f945h+o4OJUXEkbgwAAAABJRU5ErkJggg=="></p>
+</blockquote>
+<h3 class="expanded">Нагрузка</h3>
+<blockquote>
+<table class="ta">
+ <tbody><tr>
+  <td colspan="2"></td>
+  <td align="center">Зубчатое колесо 1</td>
+  <td align="center">Зубчатое колесо 2</td>
+ </tr>
+ <tr>
+  <td>Мощность</td>
+  <td>P</td>
+  <td align="center"><font color="magenta">1,500 кВт</font></td>
+  <td align="center"><font color="black">1,470 кВт</font></td>
+ </tr>
+ <tr>
+  <td>Скорость</td>
+  <td>n</td>
+  <td align="center"><font color="magenta">1000,00 об_мин</font></td>
+  <td align="center"><font color="black">261,44 об_мин</font></td>
+ </tr>
+ <tr>
+  <td>Крутящий момент</td>
+  <td>T</td>
+  <td align="center"><font color="black">14,324 Н м</font></td>
+  <td align="center"><font color="black">53,693 Н м</font></td>
+ </tr>
+ <tr>
+  <td>КПД</td>
+  <td>η</td>
+  <td colspan="2" align="center"><font color="magenta">0,980 бр</font></td>
+ </tr>
+ <tr>
+  <td>Радиальная сила</td>
+  <td>F<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">r</span></td>
+  <td colspan="2" align="center"><font color="black">131,214 Н</font></td>
+ </tr>
+ <tr>
+  <td>Окружная сила</td>
+  <td>F<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">t</span></td>
+  <td colspan="2" align="center"><font color="black">345,565 Н</font></td>
+ </tr>
+ <tr>
+  <td>Осевая сила</td>
+  <td>F<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">a</span></td>
+  <td colspan="2" align="center"><font color="black">92,594 Н</font></td>
+ </tr>
+ <tr>
+  <td>цикл нагружения</td>
+  <td>F<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">n</span></td>
+  <td colspan="2" align="center"><font color="black">381,093 Н</font></td>
+ </tr>
+ <tr>
+  <td>Окружная скорость</td>
+  <td>v</td>
+  <td colspan="2" align="center"><font color="black">4,337 м_с</font></td>
+ </tr>
+ <tr>
+  <td>Резонансная частота вращения</td>
+  <td>n<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">E1</span></td>
+  <td align="center"><font color="black">7363,825 об_мин</font></td>
+  <td></td>
+ </tr>
+</tbody></table>
+</blockquote>
+<h3 class="expanded">Материал</h3>
+<blockquote>
+<table class="ta">
+ <tbody><tr>
+  <td colspan="2"></td>
+  <td align="center">Зубчатое колесо 1</td>
+  <td align="center">Зубчатое колесо 2</td>
+ </tr>
+ <tr>
+  <td colspan="2"></td>
+  <td align="center">GOST 45</td>
+  <td align="center">GOST 50</td>
+ </tr>
+ <tr>
+  <td>Окончательный предел прочности растяжения</td>
+  <td>S<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">u</span></td>
+  <td align="center"><font color="black">540 MПа</font></td>
+  <td align="center"><font color="black">640 MПа</font></td>
+ </tr>
+ <tr>
+  <td>Предел текучести</td>
+  <td>S<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">y</span></td>
+  <td align="center"><font color="black">325 MПа</font></td>
+  <td align="center"><font color="black">390 MПа</font></td>
+ </tr>
+ <tr>
+  <td>Модуль упругости</td>
+  <td>E</td>
+  <td align="center"><font color="black">206000 MПа</font></td>
+  <td align="center"><font color="black">206000 MПа</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент Пуассона</td>
+  <td>μ</td>
+  <td align="center"><font color="black">0,300 бр</font></td>
+  <td align="center"><font color="black">0,300 бр</font></td>
+ </tr> 
+ <tr>
+  <td>Предел усталости при изгибе</td>
+  <td>σ<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Flim</span></td>
+  <td align="center"><font color="black">356,0 MПа</font></td>
+  <td align="center"><font color="black">390,0 MПа</font></td>
+ </tr>
+ <tr>
+  <td>Предел контактной усталости</td>
+  <td>σ<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Hlim</span></td>
+  <td align="center"><font color="black">430,0 MПа</font></td>
+  <td align="center"><font color="black">1140,0 MПа</font></td>
+ </tr>
+ <tr>
+  <td>Твердость в стержне зуба</td>
+  <td>JHV</td>
+  <td align="center"><font color="black">210 бр</font></td>
+  <td align="center"><font color="black">210 бр</font></td>
+ </tr>
+ <tr>
+  <td>Твердость в боковой части зуба</td>
+  <td>VHV</td>
+  <td align="center"><font color="black">600 бр</font></td>
+  <td align="center"><font color="black">600 бр</font></td>
+ </tr>
+ <tr>
+  <td>Основное количество циклов нагрузки при изгибе</td>
+  <td>N<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Flim</span></td>
+  <td align="center"><font color="black">3000000 бр</font></td>
+  <td align="center"><font color="black">3000000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Основное количество циклов нагрузки при контакте</td>
+  <td>N<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Hlim</span></td>
+  <td align="center"><font color="black">50000000 бр</font></td>
+  <td align="center"><font color="black">100000000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Экспонента кривой Велера для изгиба</td>
+  <td>q<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">F</span></td>
+  <td align="center"><font color="black">6,0 бр</font></td>
+  <td align="center"><font color="black">6,0 бр</font></td>
+ </tr>
+ <tr>
+  <td>Экспонента кривой Велера для контакта</td>
+  <td>q<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">H</span></td>
+  <td align="center"><font color="black">10,0 бр</font></td>
+  <td align="center"><font color="black">10,0 бр</font></td>
+ </tr> 
+ <tr>
+  <td>Вид обработки</td>
+  <td>тип</td>
+  <td align="center"><font color="black">0 бр</font></td>
+  <td align="center"><font color="black">2 бр</font></td>
+ </tr> 
+</tbody></table>
+</blockquote>
+<h3 class="expanded">Расчет прочности</h3>
+<blockquote>
+<h5 class="expanded">Коэффициент динамической нагрузки</h5>
+<blockquote>
+<table class="ta">
+ <tbody><tr>
+  <td>Коэффициент внешней динамической нагрузки</td>
+  <td>K<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">A</span></td>
+  <td colspan="2" align="center"><font color="magenta">1,200 бр</font></td>
+ </tr>
+ <tr>
+  <td>Динамический коэффициент</td>
+  <td>K<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Hv</span></td>
+  <td align="center"><font color="black">1,237 бр</font></td>
+  <td align="center"><font color="black">1,237 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэф.поверхностной нагрузки</td>
+  <td>K<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">H</span><span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">β</span></td>
+  <td align="center"><font color="black">3,311 бр</font></td>
+  <td align="center"><font color="black">2,941 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент поперечной нагрузки</td>
+  <td>K<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">H</span><span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">α</span></td>
+  <td align="center"><font color="black">2,658 бр</font></td>
+  <td align="center"><font color="black">2,658 бр</font></td>
+ </tr>
+ <tr>
+  <td>Единовременный коэффициент перегрузки</td>
+  <td>K<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">AS</span></td>
+  <td colspan="2" align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+</tbody></table>
+</blockquote>
+<h5 class="expanded">Коэффициенты контактного напряжения</h5>
+<blockquote>
+<table class="ta">
+ <tbody><tr>
+  <td>Коэффициент эластичности</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">E</span></td>
+  <td colspan="2" align="center"><font color="black">189,812 бр</font></td>
+ </tr>
+ <tr>
+  <td>Фактор области</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">H</span></td>
+  <td colspan="2" align="center"><font color="black">2,415 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент перекрытия</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">ε</span></td>
+  <td colspan="2" align="center"><font color="black">0,766 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент контакта двух зубьев</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">B</span></td>
+  <td align="center"><font color="black">1,000 бр</font></td>
+  <td align="center"><font color="black">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент долговечности</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">N</span></td>
+  <td align="center"><font color="black">1,000 бр</font></td>
+  <td align="center"><font color="black">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент смазки</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">L</span></td>
+  <td colspan="2" align="center"><font color="black">0,937 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент шероховатости</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">R</span></td>
+  <td colspan="2" align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент скорости</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">v</span></td>
+  <td colspan="2" align="center"><font color="black">0,955 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент угла наклона зуба</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">β</span></td>
+  <td colspan="2" align="center"><font color="black">0,983 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент размера</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">X</span></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент механического уплотнения</td>
+  <td>Z<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">W</span></td>
+  <td colspan="2" align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+</tbody></table>
+</blockquote>
+<h5 class="expanded">Коэффициент напряжения изгиба</h5>
+<blockquote>
+<table class="ta">
+ <tbody><tr>
+  <td>Коэффициент формы</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Fa</span></td>
+  <td align="center"><font color="black">2,381 бр</font></td>
+  <td align="center"><font color="black">2,125 бр</font></td>
+ </tr>
+ <tr>
+  <td>Поправ.коэф.напряжения</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Sa</span></td>
+  <td align="center"><font color="black">1,703 бр</font></td>
+  <td align="center"><font color="black">1,907 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент заточки зубьев</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Sag</span></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент угла наклона зуба</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">β</span></td>
+  <td colspan="2" align="center"><font color="black">0,875 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент перекрытия</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">ε</span></td>
+  <td colspan="2" align="center"><font color="black">0,664 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент изменения нагрузки</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">A</span></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент технологичности</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">T</span></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент долговечности</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">N</span></td>
+  <td align="center"><font color="black">1,000 бр</font></td>
+  <td align="center"><font color="black">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэф. чувств. к врезанию</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">δ</span></td>
+  <td align="center"><font color="black">1,227 бр</font></td>
+  <td align="center"><font color="black">1,217 бр</font></td>
+ </tr>
+ <tr>
+  <td>Коэффициент размера</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">X</span></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+  <td align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+ <tr>
+  <td>Фактор поверхности впадин</td>
+  <td>Y<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">R</span></td>
+  <td colspan="2" align="center"><font color="magenta">1,000 бр</font></td>
+ </tr>
+</tbody></table>
+</blockquote>
+<h5 class="expanded">Результаты</h5>
+<blockquote>
+<table class="ta">
+ <tbody><tr>
+  <td>Запас прочности по коррозии</td>
+  <td>S<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">H</span></td>
+  <td align="center"><font color="black">1,202 бр</font></td>
+  <td align="center"><font color="black">3,187 бр</font></td>
+ </tr>
+ <tr>
+  <td>Запас прочности по ломке зубьев</td>
+  <td>S<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">F</span></td>
+  <td align="center"><font color="black">7,763 бр</font></td>
+  <td align="center"><font color="black">8,034 бр</font></td>
+ </tr>
+ <tr>
+  <td>Запас прочности при контакте</td>
+  <td>S<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Hst</span></td>
+  <td align="center"><font color="black">2,793 бр</font></td>
+  <td align="center"><font color="black">3,352 бр</font></td>
+ </tr>
+ <tr>
+  <td>Запас прочности при изгибе</td>
+  <td>S<span style="FONT-SIZE: smaller; VERTICAL-ALIGN: sub">Fst</span></td>
+  <td align="center"><font color="black">15,813 бр</font></td>
+  <td align="center"><font color="black">16,505 бр</font></td>
+ </tr>
+ <tr>
+  <td colspan="2">Проверочный расчет</td>
+  <td colspan="2" align="center"><b><font color="green">Положительная</font></b></td>
+ </tr>
+</tbody></table>
+</blockquote>
+</blockquote>
+<h3 class="expanded">Краткие сведения о сообщениях</h3>
+<blockquote>
+<table class="ta">
+<tbody><tr><td><p><font color="blue">11:41:39 Расчет: Соответствие при подборе в процессе расчета!</font></p></td></tr>
+</tbody></table>
+</blockquote>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
